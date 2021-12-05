@@ -14,3 +14,7 @@ lambda:
 lambda.zip: lambda
 	cd bin/lambda/ && zip lambda.zip bootstrap
 
+# For SAM
+.PHONY: build-goal2
+build-goal2:
+	GOOS=linux go build -o $(ARTIFACTS_DIR)/bootstrap main.go
