@@ -13,6 +13,12 @@ make lambda
 docker run -p 9000:8080 -v "$(pwd)/bin/lambda/bootstrap:/var/runtime/bootstrap" public.ecr.aws/lambda/provided:al2 /var/runime/bootstrap
 ```
 
+To test event:
+
+```
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"hello":"world"}'
+```
+
 ### Method 2: With custom image
 
 ```sh
@@ -20,11 +26,26 @@ docker build -t mytestimg .
 docker run -p 9000:8080 mytestimg
 ```
 
-### Example Event
+To test event:
 
-```sh
+```
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"hello":"world"}'
 ```
+
+### Method 3: Using SAM
+
+```sh
+sam build
+sam local start-lambda
+```
+
+To test event:
+
+```sh
+curl -XPOST "http://localhost:3001/2015-03-31/functions/goal2/invocations" -d '{"hello":"world"}'
+```
+
+**NOTE:** URL is different from other methods.
 
 ## References
 
