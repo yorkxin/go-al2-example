@@ -4,10 +4,13 @@ all: lambda
 clean:
 	rm -rf bin/*
 
+# For running the binary on your machine using provided.al2 image
 .PHONY: lambda
 lambda:
-	GOOS=linux GOARCH=arm64 go build -o bin/lambda.arm64 main.go
+	GOOS=linux GOARCH=arm64 go build -o bin/lambda/bootstrap main.go
 
+# For directly running `aws lambda update-function-code`
 .PHONY: lambda.zip
 lambda.zip: lambda
-	cd bin/ && zip lambda.zip lambda.arm64
+	cd bin/lambda/ && zip lambda.zip bootstrap
+
