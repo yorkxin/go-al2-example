@@ -10,7 +10,7 @@ Using [Lambda Provided Image](https://gallery.ecr.aws/lambda/provided)
 
 ```sh
 make lambda
-docker run -p 9000:8080 -v "$(pwd)/bin/lambda.arm64:/var/runtime/bootstrap" public.ecr.aws/lambda/provided:al2 /var/runime/bootstrap
+docker run -p 9000:8080 -v "$(pwd)/bin/lambda/bootstrap:/var/runtime/bootstrap" public.ecr.aws/lambda/provided:al2 /var/runime/bootstrap
 ```
 
 ### Method 2: With custom image
